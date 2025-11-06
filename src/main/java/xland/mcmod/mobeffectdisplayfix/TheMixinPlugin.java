@@ -5,28 +5,25 @@ import org.objectweb.asm.tree.*;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
+import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Set;
 
 public final class TheMixinPlugin implements IMixinConfigPlugin {
     static void hook(ClassNode classNode) {
-        MethodNode mixinTarget = Platform.CURRENT.mixinTarget().findMethod(classNode.methods);
-        MethodInsnNode redirectSource = Platform.CURRENT.redirectSource().findInvocation(mixinTarget.instructions);
+        MethodNode mixinTarget = Platform.CURRENT.redirectSource().findMethod(classNode.methods);
         InsnList replaced = new InsnList();
 
-        if (redirectSource.getOpcode() != Opcodes.INVOKESTATIC) {
-            // we don't need the thisRef
-            replaced.add(new InsnNode(Opcodes.SWAP));
-            replaced.add(new InsnNode(Opcodes.POP));
-        }
+        replaced.add(new VarInsnNode(Opcodes.ALOAD, !Modifier.isStatic(mixinTarget.access) ? 1 : 0));
 
         replaced.add(new InsnNode(Opcodes.DUP));
         replaced.add(Platform.CURRENT.getEffect().makeInvocation(Opcodes.INVOKEVIRTUAL, false));
+        replaced.add(new InsnNode(Opcodes.SWAP));
         replaced.add(Platform.CURRENT.getAmplifier().makeInvocation(Opcodes.INVOKEVIRTUAL, false));
         replaced.add(Platform.CURRENT.redirectTarget().makeInvocation(Opcodes.INVOKESTATIC, false));
+        replaced.add(new InsnNode(Opcodes.ARETURN));
 
-        mixinTarget.instructions.insert(redirectSource, replaced);
-        mixinTarget.instructions.remove(redirectSource);
+        mixinTarget.instructions.insert(replaced);
     }
 
     @Override

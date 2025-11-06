@@ -2,6 +2,10 @@
 // Since 1.21.5: PotionContents.getPotionDescription() dis-inlined
 // Since 1.21.2: Use EffectsInInventory instead of EffectRenderingInventoryScreen (intermediary names remain unchanged)
 // Since 1.20.5: Use Holder<world.effect.MobEffect> instead of MobEffect as a return value of MobEffectInstance.getEffect()
+// Since 1.20.5 (actually 1.20.6), Forge gives up using SRG method names
+// Since 1.20.5, NeoForge switches to neoforge.mods.toml
+// Since 1.20.2 (hard-forked NeoForge birth), NeoForge uses full MojMap
+// This mod supports 1.20.1+
 
 # Redirect Target
 world.item.alchemy.PotionContents getPotionDescription (core.Holder, I) -> network.chat.MutableComponent
@@ -21,10 +25,5 @@ world.effect.MobEffectInstance getAmplifier () -> I
 // Intermediary: class_1293.method_5578() -> I
 
 # Mixin Target
-// Does not need to match descriptor precisely, I suppose
-client.gui.screens.inventory.EffectsInInventory renderLabels (client.gui.GuiGraphics, I, I, java.lang.Iterable) -> V
-// Intermediary: class_485.method_18644(class_332, I, I, java.lang.Iterable) -> V
-
-# Redirect Source
 client.gui.screens.inventory.EffectsInInventory /*invokevirtual*/ getEffectName (world.effect.MobEffectInstance) -> network.chat.Component
 // Intermediary: class_485.method_38933(class_1293) -> class_2561

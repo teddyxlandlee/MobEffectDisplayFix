@@ -10,7 +10,7 @@
   "mixins": [
     "mob_effect_display_fix.mixins.json"
   ],
-  "dependencies": {
+  "depends": {
     "minecraft": ">=1.21.5"
   }
 }

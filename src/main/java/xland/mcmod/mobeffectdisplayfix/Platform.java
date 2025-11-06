@@ -6,13 +6,12 @@ import net.fabricmc.loader.api.Version;
 import net.fabricmc.loader.api.VersionParsingException;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
 
-record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmplifier, MethodRef mixinTarget, MethodRef redirectSource) {
+record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmplifier, MethodRef redirectSource) {
     Platform {
         redirectTarget = redirectTarget.remap();
         getEffect = getEffect.remap();
         getAmplifier = getAmplifier.remap();
-        mixinTarget = mixinTarget.remap().retainNameOnly();
-        redirectSource = redirectSource.remap().ignoreDescriptor();
+        redirectSource = redirectSource.remap().retainNameOnly();
     }
 
     static final boolean isMojMapped;
@@ -87,13 +86,11 @@ record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmpl
             /*redirectTarget*/new MethodRef("net.minecraft.world.item.alchemy.PotionContents", "getPotionDescription", "(Lnet/minecraft/core/Holder;I)Lnet/minecraft/network/chat/MutableComponent;"),
             /*getEffect*/new MethodRef("net.minecraft.world.effect.MobEffectInstance", "getEffect", "()Lnet/minecraft/core/Holder;"),
             /*getAmplifier*/new MethodRef("net.minecraft.world.effect.MobEffectInstance", "getAmplifier", "()I"),
-            /*mixinTarget*/new MethodRef("net.minecraft.client.gui.screens.inventory.EffectsInInventory", "renderLabels", "(Lnet/minecraft/client/gui/GuiGraphics;IILjava/lang/Iterable;)V"),
             /*redirectSource*/new MethodRef("net.minecraft.client.gui.screens.inventory.EffectsInInventory", "getEffectName", "(Lnet/minecraft/world/effect/MobEffectInstance;)Lnet/minecraft/network/chat/Component;")
         ) : new Platform(
             /*redirectTarget*/new MethodRef("net.minecraft.class_1844", "method_66698", "(Lnet/minecraft/class_6880;I)Lnet/minecraft/class_5250;"),
             /*getEffect*/new MethodRef("net.minecraft.class_1293", "method_5579", "()Lnet/minecraft/class_6880;"),
             /*getAmplifier*/new MethodRef("net.minecraft.class_1293", "method_5578", "()I"),
-            /*mixinTarget*/new MethodRef("net.minecraft.class_485", "method_18644", "(Lnet/minecraft/class_332;IILjava/lang/Iterable;)V"),
             /*redirectSource*/new MethodRef("net.minecraft.class_485", "method_38933", "(Lnet/minecraft/class_1293;)Lnet/minecraft/class_2561;")
         );
     }
