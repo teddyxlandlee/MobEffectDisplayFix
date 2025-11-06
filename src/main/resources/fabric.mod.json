@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "id": "mob_effect_display_fix",
+  "version": "${version}",
+  "authors": ["teddyxlandlee"],
+  "name": "Mob Effect Display Fix",
+  "description": "Fixes the wrong display of mob effect amplifier",
+  "license": "Apache-2.0",
+  "environment": "client",
+  "mixins": [
+    "mob_effect_display_fix.mixins.json"
+  ],
+  "dependencies": {
+    "minecraft": ">=1.21.5"
+  }
+}

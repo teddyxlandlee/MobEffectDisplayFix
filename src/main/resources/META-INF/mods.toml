@@ -1,0 +1,17 @@
+modLoader="javafml" # for FMInjector compatibility, not using lowcodefml
+loaderVersion='(0,)'
+license='Apache-2.0'
+
+[[mods]]
+modId='mob_effect_display_fix'
+version='${version}'
+displayName='Mob Effect Display Fix'
+description='Fixes the wrong display of mob effect amplifier'
+authors='teddyxlandlee'
+
+[[dependencies.mob_effect_display_fix]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.5,)"
+ordering = "NONE"
+side = "CLIENT"

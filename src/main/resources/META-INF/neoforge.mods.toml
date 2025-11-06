@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion='(0,)'
+license='Apache-2.0'
+
+[[mods]]
+modId='mob_effect_display_fix'
+version='${version}'
+displayName='Mob Effect Display Fix'
+description='Fixes the wrong display of mob effect amplifier'
+authors='teddyxlandlee'
+
+[[mixins]]
+config='mob_effect_display_fix.mixins.json'
+
+[[dependencies.mob_effect_display_fix]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.5,)"
+ordering = "NONE"
+side = "CLIENT"

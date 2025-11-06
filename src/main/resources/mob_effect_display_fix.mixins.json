@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "xland.mcmod.mobeffectdisplayfix.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "Stub"
+  ],
+  "plugin": "xland.mcmod.mobeffectdisplayfix.TheMixinPlugin"
+}

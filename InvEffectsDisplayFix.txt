@@ -1,0 +1,30 @@
+// MojMaps 1.21.5+ Only
+// Since 1.21.5: PotionContents.getPotionDescription() dis-inlined
+// Since 1.21.2: Use EffectsInInventory instead of EffectRenderingInventoryScreen (intermediary names remain unchanged)
+// Since 1.20.5: Use Holder<world.effect.MobEffect> instead of MobEffect as a return value of MobEffectInstance.getEffect()
+
+# Redirect Target
+world.item.alchemy.PotionContents getPotionDescription (core.Holder, I) -> network.chat.MutableComponent
+// Intermediary: class_1844.method_66698(class_6880, I) -> class_5250
+
+```
+   public static MutableComponent getPotionDescription(Holder<MobEffect> holder, int amplifier) {
+      MutableComponent text = Component.translatable(holder.value().getDescriptionId());
+      return amplifier > 0 ? Component.translatable("potion.withAmplifier", text, Component.translatable("potion.potency." + amplifier)) : text;
+   }
+```
+
+# To invoke
+world.effect.MobEffectInstance getEffect () -> core.Holder
+// Intermediary: class_1293.method_5579() -> class_6880
+world.effect.MobEffectInstance getAmplifier () -> I
+// Intermediary: class_1293.method_5578() -> I
+
+# Mixin Target
+// Does not need to match descriptor precisely, I suppose
+client.gui.screens.inventory.EffectsInInventory renderLabels (client.gui.GuiGraphics, I, I, java.lang.Iterable) -> V
+// Intermediary: class_485.method_18644(class_332, I, I, java.lang.Iterable) -> V
+
+# Redirect Source
+client.gui.screens.inventory.EffectsInInventory /*invokevirtual*/ getEffectName (world.effect.MobEffectInstance) -> network.chat.Component
+// Intermediary: class_485.method_38933(class_1293) -> class_2561

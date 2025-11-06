@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "xland/mcmod/mobeffectdisplayfix/mixins/Stub": {
+      "net.minecraft.client.gui.screens.inventory.EffectsInInventory": "net.minecraft.class_485"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "xland/mcmod/mobeffectdisplayfix/mixins/Stub": {
+        "net.minecraft.client.gui.screens.inventory.EffectsInInventory": "net.minecraft.class_485"
+      }
+    }
+  }
+}
