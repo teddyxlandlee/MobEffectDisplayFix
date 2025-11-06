@@ -38,6 +38,9 @@ tasks.processResources {
 
 tasks.withType(Jar::class).configureEach {
     manifest.attributes("MixinConfigs" to "mob_effect_display_fix.mixins.json")
+    from("LICENSE.txt") {
+        rename { "META-INF/LICENSE_${project.name}.txt" }
+    }
 }
 
 forgeInitInjector {
