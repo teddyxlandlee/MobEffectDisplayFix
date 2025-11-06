@@ -13,4 +13,4 @@ pluginManagement {
 
 rootProject.name = "MobEffectDisplayFix"
 
-include("fabric", "neo")
+include("fabric", "neo", "forge")

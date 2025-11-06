@@ -5,6 +5,5 @@
   "minVersion": "0.8",
   "client": [
     "MixinEffectsWidgetContainer"
-  ],
-  "plugin": "xland.mcmod.mobeffectdisplayfix.TheMixinPlugin"
+  ]
 }

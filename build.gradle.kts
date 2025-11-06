@@ -9,7 +9,7 @@ plugins {
 
 architectury {
     minecraft = rootProject.ext["minecraft_version"].toString()
-    common("fabric", "neoforge")
+    common("fabric", "neoforge", "forge")
 }
 
 subprojects {
