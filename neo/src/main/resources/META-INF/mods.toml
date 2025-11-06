@@ -1,4 +1,4 @@
-modLoader="javafml" # for FMInjector compatibility, not using lowcodefml
+modLoader="lowcodefml"
 loaderVersion='(0,)'
 license='Apache-2.0'
 
@@ -12,6 +12,7 @@ authors='teddyxlandlee'
 [[dependencies.mob_effect_display_fix]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.5,)"
+mandatory = true
+versionRange = "[1.20.5,1.21.5)"
 ordering = "NONE"
 side = "CLIENT"

@@ -11,6 +11,9 @@
     "mob_effect_display_fix.mixins.json"
   ],
   "depends": {
-    "minecraft": ">=1.21.5"
+    "minecraft": ">=1.20.5 <1.21.5"
+  },
+  "recommends": {
+    "enchlevel-langpatch": ">=3"
   }
 }
