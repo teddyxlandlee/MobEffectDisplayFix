@@ -1,10 +1,9 @@
 package xland.mcmod.mobeffectdisplayfix;
 
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.MappingResolver;
-import net.fabricmc.loader.api.Version;
-import net.fabricmc.loader.api.VersionParsingException;
+import net.fabricmc.loader.api.*;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
+
+import java.util.Locale;
 
 record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmplifier, MethodRef redirectSource) {
     Platform {
@@ -31,7 +30,7 @@ record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmpl
                     }
                 }
 
-                private static final String UNOBFUSCATED_SUFFIX = "_unobfuscated";
+                private static final String UNOBFUSCATED_BUILD = "unobfuscated";
 
                 static final boolean isMojMapped;
 
@@ -43,7 +42,9 @@ record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmpl
                     final Version mcVersion = FabricLoader.getInstance().getModContainer("minecraft").orElseThrow().getMetadata().getVersion();
 
                     isMojMapped = !pre25w44a.test(mcVersion) && (
-                            postMountsOfMayhem.test(mcVersion) || FabricLoader.getInstance().getRawGameVersion().endsWith(UNOBFUSCATED_SUFFIX)
+                            postMountsOfMayhem.test(mcVersion) ||
+                                    mcVersion instanceof SemanticVersion semMcVersion &&
+                                            semMcVersion.getBuildKey().orElse("").toLowerCase(Locale.ROOT).contains(UNOBFUSCATED_BUILD)
                     );
                 }
 
