@@ -36,8 +36,8 @@ record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmpl
 
                 static {
                     final VersionPredicate pre25w44a = predicateOf("<=1.21.11-alpha.25.44.a");
-                    // in the hope that Mojang does not jump to 1.22
-                    final VersionPredicate postMountsOfMayhem = predicateOf(">1.21.11");
+                    // in the hope that Mojang does not release obfuscated drops as 26.0 or something
+                    final VersionPredicate postMountsOfMayhem = predicateOf(">=26");
 
                     final Version mcVersion = FabricLoader.getInstance().getModContainer("minecraft").orElseThrow().getMetadata().getVersion();
 
