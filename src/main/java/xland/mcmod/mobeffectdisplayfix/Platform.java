@@ -2,6 +2,7 @@ package xland.mcmod.mobeffectdisplayfix;
 
 import net.fabricmc.loader.api.*;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
+import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
 
@@ -35,17 +36,24 @@ record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmpl
                 static final boolean isMojMapped;
 
                 static {
-                    final VersionPredicate pre25w44a = predicateOf("<=1.21.11-alpha.25.44.a");
-                    // in the hope that Mojang does not release obfuscated drops as 26.0 or something
-                    final VersionPredicate postMountsOfMayhem = predicateOf(">=26");
+                    boolean isMojMapped0;
+                    try {
+                        final VersionPredicate pre25w44a = predicateOf("<=1.21.11-alpha.25.44.a");
+                        // in the hope that Mojang does not release obfuscated drops as 26.0 or something
+                        final VersionPredicate postMountsOfMayhem = predicateOf(">=26");
 
-                    final Version mcVersion = FabricLoader.getInstance().getModContainer("minecraft").orElseThrow().getMetadata().getVersion();
+                        final Version mcVersion = FabricLoader.getInstance().getModContainer("minecraft").orElseThrow().getMetadata().getVersion();
 
-                    isMojMapped = !pre25w44a.test(mcVersion) && (
-                            postMountsOfMayhem.test(mcVersion) ||
-                                    mcVersion instanceof SemanticVersion semMcVersion &&
-                                            semMcVersion.getBuildKey().orElse("").toLowerCase(Locale.ROOT).contains(UNOBFUSCATED_BUILD)
-                    );
+                        isMojMapped0 = !pre25w44a.test(mcVersion) && (
+                                postMountsOfMayhem.test(mcVersion) ||
+                                        mcVersion instanceof SemanticVersion semMcVersion &&
+                                                semMcVersion.getBuildKey().orElse("").toLowerCase(Locale.ROOT).contains(UNOBFUSCATED_BUILD)
+                        );
+                    } catch (Throwable e) {
+                        LoggerFactory.getLogger(FabricPlatformRemapper.class).warn("Corrupted Fabric environment. Treat as MojMapped.", e);
+                        isMojMapped0 = true;
+                    }
+                    isMojMapped = isMojMapped0;
                 }
 
                 final MappingResolver mappingResolver = FabricLoader.getInstance().getMappingResolver();

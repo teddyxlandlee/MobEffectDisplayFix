@@ -17,6 +17,7 @@ dependencies {
     implementation("net.fabricmc:sponge-mixin:0.16.5+mixin.0.8.7")
     implementation("net.fabricmc:fabric-loader:${project.ext["fabric_loader_version"]}")
     implementation("org.ow2.asm:asm-tree:9.9")
+    implementation("org.slf4j:slf4j-api:2.0.16")
     compileOnly("org.jetbrains:annotations:26.1.0")
 
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
