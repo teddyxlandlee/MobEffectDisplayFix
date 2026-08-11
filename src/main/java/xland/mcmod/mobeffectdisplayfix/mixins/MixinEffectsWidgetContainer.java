@@ -12,7 +12,7 @@ import xland.mcmod.mobeffectdisplayfix.impl.GetEffectName;
 
 @Pseudo
 @Mixin(EffectRenderingInventoryScreen.class)
-abstract class MixinEffectsWidgetContainer {
+public abstract class MixinEffectsWidgetContainer {
     @Inject(at = @At("HEAD"), cancellable = true, method = "getEffectName")
     private void redirectGetEffectName(MobEffectInstance mobEffectInstance, CallbackInfoReturnable<Component> cir) {
         cir.setReturnValue(GetEffectName.getEffectName(mobEffectInstance));

@@ -52,7 +52,7 @@ allprojects {
 
     tasks.withType(JavaCompile::class).configureEach {
         options.encoding = "utf8"
-        options.release.set(21)
+        options.release.set(17)
     }
 
     java {
@@ -127,7 +127,7 @@ subprojects {
                 "Implementation-Title" to "${rootProject.name}-${project.name}",
                 "Implementation-Version" to project.version,
                 "Implementation-Vendor" to "teddyxlandlee",
-                "Implementation-Timestamp" to Instant.now()
+                "Implementation-Timestamp" to Instant.now(),
             )
         }
     }
