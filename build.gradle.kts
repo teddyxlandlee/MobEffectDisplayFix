@@ -39,7 +39,7 @@ allprojects {
 
 //    implementation("net.fabricmc:sponge-mixin:0.16.5+mixin.0.8.7")
 //    implementation("org.ow2.asm:asm-tree:9.9")
-        compileOnly("org.jetbrains:annotations:26.0.2")
+        compileOnly("org.jetbrains:annotations:26.1.0")
     }
 
     tasks.processResources {
@@ -127,7 +127,7 @@ subprojects {
                 "Implementation-Title" to "${rootProject.name}-${project.name}",
                 "Implementation-Version" to project.version,
                 "Implementation-Vendor" to "teddyxlandlee",
-                "Implementation-Timestamp" to Instant.now()
+                "Implementation-Timestamp" to Instant.now(),
             )
         }
     }

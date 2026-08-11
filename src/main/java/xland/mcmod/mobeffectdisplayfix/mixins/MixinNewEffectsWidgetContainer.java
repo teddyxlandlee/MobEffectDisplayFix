@@ -11,6 +11,7 @@ import xland.mcmod.mobeffectdisplayfix.impl.GetEffectName;
 
 @Pseudo
 @Mixin(targets = "net.minecraft.client.gui.screens.inventory.EffectsInInventory")
+@SuppressWarnings("all")
 abstract class MixinNewEffectsWidgetContainer {
     @Inject(at = @At("HEAD"), cancellable = true, method = "getEffectName", remap = false)
     private void redirectGetEffectName(MobEffectInstance mobEffectInstance, CallbackInfoReturnable<Component> cir) {
