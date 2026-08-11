@@ -13,6 +13,16 @@ repositories {
     }
 }
 
+java {
+    withSourcesJar()
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
+    options.release = 21
+}
+
 dependencies {
     implementation("net.fabricmc:sponge-mixin:0.16.5+mixin.0.8.7")
     implementation("net.fabricmc:fabric-loader:${project.ext["fabric_loader_version"]}")
@@ -49,5 +59,3 @@ forgeInitInjector {
     modId = "mob_effect_display_fix"
     neoFlag("post_20_5")    // This branch is for 1.21.5+
 }
-
-java.withSourcesJar()

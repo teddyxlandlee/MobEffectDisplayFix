@@ -1,7 +1,7 @@
 package xland.mcmod.mobeffectdisplayfix;
 
 import org.intellij.lang.annotations.MagicConstant;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
@@ -15,7 +15,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-record MethodRef(@Nullable String owner, @NotNull String name, @Nullable String desc) {
+@NotNullByDefault
+record MethodRef(@Nullable String owner, String name, @Nullable String desc) {
     MethodRef {
         owner = owner == null ? null : owner.replace('.', '/');
         Objects.requireNonNull(name, "name");
@@ -77,7 +78,6 @@ record MethodRef(@Nullable String owner, @NotNull String name, @Nullable String 
     }
 
     @Override
-    @NotNull
     public String toString() {
         String methodName = desc == null ? name : name + desc;
 

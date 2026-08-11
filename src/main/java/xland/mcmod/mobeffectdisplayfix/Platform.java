@@ -2,10 +2,12 @@ package xland.mcmod.mobeffectdisplayfix;
 
 import net.fabricmc.loader.api.*;
 import net.fabricmc.loader.api.metadata.version.VersionPredicate;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.slf4j.LoggerFactory;
 
 import java.util.Locale;
 
+@NotNullByDefault
 record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmplifier, MethodRef redirectSource) {
     Platform {
         redirectTarget = redirectTarget.remap();
@@ -81,6 +83,8 @@ record Platform(MethodRef redirectTarget, MethodRef getEffect, MethodRef getAmpl
 
     private static boolean isFabricEnv() {
         try {
+            // We have another layer of corrupted Fabric environment check.
+            // Corrupted environment will be treated as MojMapped. So no worries.
             Class.forName("net.fabricmc.api.EnvType");
             return true;
         } catch (ClassNotFoundException e) {
